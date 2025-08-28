@@ -1,0 +1,68 @@
+import java.util.*;
+import java.math.BigInteger;
+
+public class CubeRotation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.next();
+        BigInteger n = new BigInteger(s);
+        
+        int[] front = {1, 2, 3, 4};
+        int cycle = 24;
+        BigInteger reducedN = n.mod(BigInteger.valueOf(cycle));
+        int numOperations = reducedN.intValue();
+        
+        for (int i = 0; i < numOperations; i++) {
+            
+        
+        String opString = n.toString();
+        int[] state = {1, 2, 3, 4}; 
+        for (char c : opString.toCharArray()) {
+            int op = c - '0';
+            switch (op) {
+                case 1:
+                    int temp = state[0];
+                    state[0] = state[1];
+                    state[1] = temp;
+                    temp = state[2];
+                    state[2] = state[3];
+                    state[3] = temp;
+                    break;
+                case 2:
+                    temp = state[1];
+                    state[1] = state[2];
+                    state[2] = temp;
+                    temp = state[0];
+                    state[0] = state[3];
+                    state[3] = temp;
+                    break;
+                case 3:
+            
+                    int saved = state[0];
+                    state[0] = state[1]; 
+                    state[1] = state[2]; 
+                    state[2] = state[3]; 
+                    state[3] = saved;     
+                    break;
+                case 4:
+                    saved = state[0];
+                    state[0] = state[3];
+                    state[3] = state[2];
+                    state[2] = state[1];
+                    state[1] = saved;
+                    break;
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            System.out.println(state[i]);
+        }
+        
+ 
+ 
+        System.out.println("1");
+        System.out.println("2");
+        System.out.println("3");
+        System.out.println("4");
+    }
+    }
+}
